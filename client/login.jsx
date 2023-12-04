@@ -25,8 +25,8 @@ const handleSignup =(e) => {
     const username =e.target.querySelector('#user').value;
     const pass =e.target.querySelector('#pass').value;
     const pass2 =e.target.querySelector('#pass2').value;
-
-    if(!username||!pass||!pass2){
+    const email =e.target.querySelector('#email').value;
+    if(!username||!pass||!pass2||!email){
         helper.handleError('All fields are required');
         return false;
     }
@@ -38,7 +38,7 @@ const handleSignup =(e) => {
     }
    
    
-    helper.sendPost(e.target.action,{username, pass, pass2});
+    helper.sendPost(e.target.action,{username, pass, pass2,email});
 
     return false;
 }
@@ -55,10 +55,10 @@ const LoginWindow =(props) =>{
         >
             <label htmlFor='username'>Username:</label>
             <input id='user' type='text' name='username' placeholder='username' />
-
+            <br/>
             <label htmlFor='pass'>Password:</label>
             <input id='pass' type='password' name='pass' placeholder='password' />
-
+            <br/>
             <input className='formSubmit' type='submit'value='Sign in' />
 
         </form>
@@ -76,14 +76,18 @@ const SignupWindow =(props) =>{
         >
             <label htmlFor='username'>Username:</label>
             <input id='user' type='text' name='username' placeholder='username' />
-
+            <br/>
+            <label htmlFor='email'>Email:</label>
+            <input id='email' type='email' name='email' placeholder='Email' />
+            <br/>
             <label htmlFor='pass'>Password:</label>
             <input id='pass' type='password' name='pass' placeholder='password' />
-
+            <br/>
 
             <label htmlFor='pass2'>Password:</label>
             <input id='pass2' type='password' name='pass2' placeholder='retype password' />
-
+            <br/>
+           
             <input className='formSubmit' type='submit'value='Sign up' />
 
         </form>
