@@ -31,10 +31,10 @@ const DomoForm =(props) =>{
             className='domoForm'        
         >
             <label htmlFor='name'>Name:</label>
-            <input id='domoName' type='text' name='name' placeholder='Domo Name' />
+            <input id='domoName' type='text' name='name' placeholder='Receiver Username' />
 
-            <label htmlFor='age'>Age:</label>
-            <input id='domoAge' type='number' name='age' min="0" />
+            <label htmlFor='age'>Message:</label>
+            <input id='domoAge' type='commment' name='age' placeholder='Tweet' />
             <pre>
 
             </pre>
@@ -71,16 +71,16 @@ const DomoList= (props)=>{
     if(props.domos.length ===0){
         return (
             <div className='domoList'>
-                <h3 className='emptyDomo'>No Domo Yet!</h3>
+                <h3 className='emptyDomo'>No Tweets Yet!</h3>
             </div>
         );
     }
     const domoNodes =props.domos.map(domo=>{
         return (
             <div key={domo._id} className='domo'>
-                <img src='/assets/img/Twitter.png' alt='domo face' className='domoFace' />
-                <h3 className='domoName'>Name: {domo.name}</h3>
-                <h3 className='domoAge'>Age: {domo.age}</h3>
+                <img src='/assets/img/Twitter.png' alt='Twitter' className='domoFace' />
+                <h3 className='domoName'>TO: {domo.name} : {domo.age}</h3>
+                
                 
                 <button onClick={() => handleDelete(domo._id)}>Delete</button>
             </div>
