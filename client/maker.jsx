@@ -8,14 +8,14 @@ const handleDomo = (e) => {
   
     const name = e.target.querySelector('#domoName').value;
     const age = e.target.querySelector('#domoAge').value;
-    const level = e.target.querySelector('#domoLevel').value; // Add this line
+    
   
-    if (!name || !age || !level) {
+    if (!name || !age ) {
       helper.handleError('All fields are required');
       return false;
     }
   
-    helper.sendPost(e.target.action, { name, age, level }, loadDomosFromServer);
+    helper.sendPost(e.target.action, { name, age }, loadDomosFromServer);
   
     return false;
   };
@@ -37,9 +37,6 @@ const DomoForm =(props) =>{
             <input id='domoAge' type='number' name='age' min="0" />
             <pre>
 
-            <label htmlFor='level'>Level:</label>
-            <input id='domoLevel' type='number' name='level' min="1" />
-            
             </pre>
             <input className='makeDomoSubmit' type='submit'value='Make Domo' />
 
@@ -81,10 +78,10 @@ const DomoList= (props)=>{
     const domoNodes =props.domos.map(domo=>{
         return (
             <div key={domo._id} className='domo'>
-                <img src='/assets/img/domoface.jpeg' alt='domo face' className='domoFace' />
+                <img src='/assets/img/Twitter.png' alt='domo face' className='domoFace' />
                 <h3 className='domoName'>Name: {domo.name}</h3>
                 <h3 className='domoAge'>Age: {domo.age}</h3>
-                <h3 className='domoLevel'>Level: {domo.level}</h3>
+                
                 <button onClick={() => handleDelete(domo._id)}>Delete</button>
             </div>
         );
