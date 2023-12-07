@@ -38,7 +38,7 @@ const DomoForm =(props) =>{
             <pre>
 
             </pre>
-            <input className='makeDomoSubmit' type='submit'value='Make Domo' />
+            <input className='makeDomoSubmit' type='submit'value='Tweet' />
 
         </form>
     );
