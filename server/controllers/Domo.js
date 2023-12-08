@@ -5,20 +5,20 @@ const { Domo } = models;
 const makerPage = (req, res) => res.render('app');
 
 const makeDomo = async (req, res) => {
-  if (!req.body.name || !req.body.message) {
+  if (!req.body.name || !req.body.tweetmsg) {
     return res.status(400).json({ error: 'All Fields are required!' });
   }
 
   const domoData = {
     name: req.body.name,
-    message: req.body.message,
+    tweetmsg: req.body.tweetmsg,
     owner: req.session.account._id,
   };
 
   try {
     const newDomo = new Domo(domoData);
     await newDomo.save();
-    return res.status(201).json({ name: newDomo.name, message: newDomo.message });
+    return res.status(201).json({ name: newDomo.name, tweetmsg: newDomo.tweetmsg });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
@@ -32,7 +32,7 @@ const makeDomo = async (req, res) => {
 const getDomos = async (req, res) => {
   try {
     const query = { owner: req.session.account._id };
-    const docs = await Domo.find(query).select('name message ').lean().exec();
+    const docs = await Domo.find(query).select('name tweetmsg ').lean().exec();
 
     return res.json({ domos: docs });
   } catch (err) {

@@ -8,14 +8,14 @@ const handleDomo = (e) => {
   
     const name = e.target.querySelector('#domoName').value;
     
-    const message = e.target.querySelector('#domoMessage').value;
+    const tweetmsg = e.target.querySelector('#tweetmsg').value;
   
-    if (!name || !message ) {
+    if (!name || !tweetmsg ) {
       helper.handleError('All fields are required');
       return false;
     }
     
-    helper.sendPost(e.target.action, { name,  message }, loadDomosFromServer);
+    helper.sendPost(e.target.action, { name,  tweetmsg }, loadDomosFromServer);
     
     return false;
   };
@@ -33,11 +33,10 @@ const DomoForm =(props) =>{
             <label htmlFor='name'>Name:</label>
             <input id='domoName' type='text' name='name' placeholder='Receiver Username' />
 
-            <pre>
-            <label htmlFor='message'>Message:</label>
-            <textarea id='domoMessage' name='message' placeholder='Your Message'></textarea>
 
-            </pre>
+            <label htmlFor='name'>Tweet:</label>
+            <input id='tweetmsg' type='text' name='tweetmsg' placeholder='Share your Thoughts' />
+            
             <input className='makeDomoSubmit' type='submit'value='Tweet' />
 
         </form>
@@ -80,7 +79,7 @@ const DomoList= (props)=>{
             <div key={domo._id} className='domo'>
                 <img src='/assets/img/Twitter.png' alt='Twitter' className='domoFace' />
                 <h3 className='domoName'>TO: {domo.name} </h3>
-                <p className='domoMessage'>Message: {domo.message}</p>
+                <p className='tweetmsg'>Tweet: {domo.tweetmsg}</p>
 
                 
                 <button onClick={() => handleDelete(domo._id)}>Delete</button>

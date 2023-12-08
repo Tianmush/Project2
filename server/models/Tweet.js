@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const _ = require('underscore');
 
 const setName = (name) => _.escape(name).trim();
-const setMessage = (message) => _.escape(message).trim();
+const setTweet = (tweetmsg) => _.escape(tweetmsg).trim();
+
 const TweetSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -10,10 +11,11 @@ const TweetSchema = new mongoose.Schema({
     trim: true,
     set: setName,
   },
-  message: {
+  tweetmsg: {
     type: String,
+    required: true,
     trim: true,
-    set:setMessage,
+    set: setTweet,
   },
   owner: {
     type: mongoose.Schema.ObjectId,
@@ -29,7 +31,8 @@ const TweetSchema = new mongoose.Schema({
 
 TweetSchema.statics.toAPI = (doc) => ({
   name: doc.name,
-  message: doc.message,
+  tweetmsg:  doc.tweetmsg,
+  
  
 });
 
