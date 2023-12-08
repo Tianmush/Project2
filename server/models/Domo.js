@@ -10,13 +10,10 @@ const DomoSchema = new mongoose.Schema({
     trim: true,
     set: setName,
   },
-  age: {
+  message: {
     type: String,
-    
     trim: true,
-    required: true,
   },
- 
   owner: {
     type: mongoose.Schema.ObjectId,
     required: true,
@@ -28,9 +25,10 @@ const DomoSchema = new mongoose.Schema({
   },
 });
 
+
 DomoSchema.statics.toAPI = (doc) => ({
   name: doc.name,
-  age: doc.age,
+  message: doc.message,
  
 });
 
