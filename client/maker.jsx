@@ -2,7 +2,7 @@ const helper =require('./helper.js');
 const React =require('react');
 const ReactDOM =require('react-dom');
 
-const handleDomo = (e) => {
+const handleTweet = (e) => {
     e.preventDefault();
     helper.hideError();
   
@@ -16,7 +16,7 @@ const handleDomo = (e) => {
       return false;
     }
     
-    helper.sendPost(e.target.action, { name,  tweetmsg }, loadDomosFromServer);
+    helper.sendPost(e.target.action, { name,  tweetmsg }, loadTweetsFromServer);
     
     return false;
   };
@@ -26,7 +26,7 @@ const TweetForm =(props) =>{
     return(
         <form id='domoForm'
             name='domoForm'
-            onSubmit={handleDomo}
+            onSubmit={handleTweet}
             action='/maker'
             method='POST'
             className='domoForm'        
@@ -57,12 +57,12 @@ const handleDelete = async (domoId) => {
   
       if (result.success) {
         // Reload the domos after deletion
-        loadDomosFromServer();
+        loadTweetsFromServer();
       } else {
-        console.error('Error deleting Domo:', result.error);
+        console.error('Error deleting Tweet:', result.error);
       }
     } catch (err) {
-      console.error('Error deleting Domo:', err);
+      console.error('Error deleting Tweet:', err);
     }
   };
   
@@ -75,7 +75,7 @@ const TweetList= (props)=>{
             </div>
         );
     }
-    const domoNodes =props.domos.map(domo=>{
+    const tweetNodes =props.domos.map(domo=>{
         return (
             <div key={domo._id} className='domo'>
                 <img src='/assets/img/Twitter.png' alt='Twitter' className='domoFace' />
@@ -90,12 +90,12 @@ const TweetList= (props)=>{
 
     return (
         <div className='domoList'>
-            {domoNodes}
+            {tweetNodes}
         </div>
     )
 
 }
-const loadDomosFromServer = async()=>{
+const loadTweetsFromServer = async()=>{
         const response =await fetch('/getDomos');
         const data = await response.json();
         ReactDOM.render(
@@ -114,6 +114,6 @@ const init =()=>{
         <TweetList domos={[]}/>,
         document.getElementById('domos')
     );
-    loadDomosFromServer();
+    loadTweetsFromServer();
 }
 window.onload = init;
