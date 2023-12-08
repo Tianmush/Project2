@@ -293,7 +293,7 @@ img.domoFace {
     float:left;
 }
 
-h3.emptyDomo {
+h3.tweetlist {
     width: 400px;
     font-size: 1.5em;
     margin: 0 auto;
@@ -302,7 +302,7 @@ h3.emptyDomo {
 }
 
 
-h3.domoName {
+h3.tweetName {
     float:left;
     width: 200px;
     font-weight: bold;

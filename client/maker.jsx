@@ -46,34 +46,12 @@ const TweetForm =(props) =>{
 
 
 
-const handleDelete = async (domoId) => {
-    try {
-      const response = await fetch('/deleteDomo', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ domoId }),
-      });
-  
-      const result = await response.json();
-  
-      if (result.success) {
-        // Reload the domos after deletion
-        loadTweetsFromServer();
-      } else {
-        console.error('Error deleting Tweet:', result.error);
-      }
-    } catch (err) {
-      console.error('Error deleting Tweet:', err);
-    }
-  };
-  
+
 const TweetList= (props)=>{
 
     if(props.domos.length ===0){
         return (
-            <div className='domoList'>
+            <div className='tweetList'>
                 <h3 className='emptyDomo'>No Tweets Yet!</h3>
             </div>
         );
@@ -82,17 +60,15 @@ const TweetList= (props)=>{
         return (
             <div key={domo._id} className='domo'>
                 <img src='/assets/img/Twitter.png' alt='Twitter' className='domoFace' />
-                <h3 className='domoName'>TO: {domo.name} </h3>
+                <h3 className='tweetName'>TO: {domo.name} </h3>
                 <p className='tweetmsg'>Tweet: {domo.tweetmsg}</p>
 
-                
-                <button onClick={() => handleDelete(domo._id)}>Delete</button>
             </div>
         );
     });
 
     return (
-        <div className='domoList'>
+        <div className='tweetList'>
             {tweetNodes}
         </div>
     )

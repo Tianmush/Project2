@@ -41,27 +41,11 @@ const getDomos = async (req, res) => {
     return res.status(500).json({ error: 'Error retrieving domos!' });
   }
 };
-const deleteDomo = async (req, res) => {
-  const domoIdToDelete = req.body.domoId; // Assuming you send the Domo _id from the client
 
-  try {
-    // Find and remove the Domo from the database
-    const result = await Tweet.findByIdAndRemove(domoIdToDelete);
-    
-    if (result) {
-      return res.status(200).json({ success: true });
-    } else {
-      return res.status(404).json({ error: 'Domo not found' });
-    }
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ error: 'Error deleting Domo' });
-  }
-};
 
 module.exports = {
   makerPage,
   makeDomo,
   getDomos,
-  deleteDomo,
+  
 };
