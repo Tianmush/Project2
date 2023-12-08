@@ -6,8 +6,9 @@ const handleDomo = (e) => {
     e.preventDefault();
     helper.hideError();
   
-    const name = e.target.querySelector('#domoName').value;
+    const name = e.target.querySelector('#resName').value;
     
+
     const tweetmsg = e.target.querySelector('#tweetmsg').value;
   
     if (!name || !tweetmsg ) {
@@ -31,7 +32,7 @@ const DomoForm =(props) =>{
             className='domoForm'        
         >
             <label htmlFor='name'>Name:</label>
-            <input id='domoName' type='text' name='name' placeholder='Receiver Username' />
+            <input id='resName' type='text' name='name' placeholder='Receiver Username' />
 
 
             <label htmlFor='name'>Tweet:</label>
