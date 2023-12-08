@@ -116,13 +116,30 @@ nav:nth-child(1) {
     
 
 }
-#col1{
+#col1,#col2{
     padding-top: 8%;
 }
 
 .big{
     font-size: 60px;
     padding-bottom: 5%;
+}
+.col-sm-4 {
+    position: relative;
+    min-height: 300px; /* Adjust the minimum height as needed */
+}
+.ad-container {
+    position: absolute; /* Position the ad container relative to the col-sm-4 */
+    top: 50%;           /* Center the ad vertically */
+    left: 50%;          /* Center the ad horizontally */
+    transform: translate(-50%, -50%); /* Center the ad using transform */
+    text-align: center; /* Center the ad content */
+}
+
+.ad-container img {
+    max-width: 100%;    /* Ensure the ad image is responsive */
+    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
 }
 
 
