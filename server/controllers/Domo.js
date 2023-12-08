@@ -13,16 +13,17 @@ const makeDomo = async (req, res) => {
     name: req.body.name,
     tweetmsg: req.body.tweetmsg,
     owner: req.session.account._id,
+    
   };
 
   try {
-    const newDomo = new Domo(domoData);
-    await newDomo.save();
-    return res.status(201).json({ name: newDomo.name, tweetmsg: newDomo.tweetmsg });
+    const newTweet = new Domo(domoData);
+    await newTweet.save();
+    return res.status(201).json({ name: newTweet.name, tweetmsg: newTweet.tweetmsg });
   } catch (err) {
     console.log(err);
     if (err.code === 11000) {
-      return res.status(400).json({ error: 'Domo already exists!' });
+      return res.status(400).json({ error: 'Tweet already exists!' });
     }
     return res.status(500).json({ error: 'An error occurred making domo!' });
   }
