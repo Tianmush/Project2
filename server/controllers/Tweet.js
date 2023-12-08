@@ -4,12 +4,12 @@ const { Tweet } = models;
 
 const makerPage = (req, res) => res.render('app');
 
-const makeDomo = async (req, res) => {
+const makeTweet = async (req, res) => {
   if (!req.body.name || !req.body.tweetmsg) {
     return res.status(400).json({ error: 'All Fields are required!' });
   }
 
-  const domoData = {
+  const tweetData = {
     name: req.body.name,
     tweetmsg: req.body.tweetmsg,
     owner: req.session.account._id,
@@ -17,7 +17,7 @@ const makeDomo = async (req, res) => {
   };
 
   try {
-    const newTweet = new Tweet(domoData);
+    const newTweet = new Tweet(tweetData);
     await newTweet.save();
     return res.status(201).json({ name: newTweet.name, tweetmsg: newTweet.tweetmsg });
   } catch (err) {
@@ -61,7 +61,7 @@ const deleteDomo = async (req, res) => {
 
 module.exports = {
   makerPage,
-  makeDomo,
+  makeTweet,
   getDomos,
   deleteDomo,
 };

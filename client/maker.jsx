@@ -107,7 +107,7 @@ const loadDomosFromServer = async()=>{
 const init =()=>{
     ReactDOM.render(
         <DomoForm/>,
-        document.getElementById('makeDomo')
+        document.getElementById('makeTweet')
     );
     ReactDOM.render(
         <DomoList domos={[]}/>,

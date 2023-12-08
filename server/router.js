@@ -12,7 +12,7 @@ const router = (app) => {
   app.get('/logout', mid.requiresLogin, controllers.Account.logout);
 
   app.get('/maker', mid.requiresLogin, controllers.Tweet.makerPage);
-  app.post('/maker', mid.requiresLogin, controllers.Tweet.makeDomo);
+  app.post('/maker', mid.requiresLogin, controllers.Tweet.makeTweet);
 
   app.delete('/deleteDomo', controllers.Tweet.deleteDomo);
 
