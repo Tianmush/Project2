@@ -24,12 +24,12 @@ const handleTweet = (e) => {
 
 const TweetForm =(props) =>{
     return(
-        <form id='domoForm'
-            name='domoForm'
+        <form id='tweetForm'
+            name='tweetForm'
             onSubmit={handleTweet}
             action='/maker'
             method='POST'
-            className='domoForm'        
+            className='tweetForm'        
         >
             <label htmlFor='name'>Name:</label>
             <input id='resName' type='text' name='name' placeholder='Receiver Username' />
@@ -38,11 +38,14 @@ const TweetForm =(props) =>{
             <label htmlFor='name'>Tweet:</label>
             <input id='tweetmsg' type='text' name='tweetmsg' placeholder='Share your Thoughts' />
             
-            <input className='makeDomoSubmit' type='submit'value='Tweet' />
+            <input className='makeTweetSubmit' type='submit'value='Tweet' />
 
         </form>
     );
 };
+
+
+
 const handleDelete = async (domoId) => {
     try {
       const response = await fetch('/deleteDomo', {
@@ -95,6 +98,7 @@ const TweetList= (props)=>{
     )
 
 }
+
 const loadTweetsFromServer = async()=>{
         const response =await fetch('/getDomos');
         const data = await response.json();

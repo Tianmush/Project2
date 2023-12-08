@@ -156,7 +156,7 @@ nav:nth-child(1) {
 
 
 
-.domoForm {
+.tweetForm {
     height: 300px;
     width: 350px;
     margin: 0 auto;
@@ -164,7 +164,7 @@ nav:nth-child(1) {
     font-size: 1.2em;
 }
 
-.domoForm label {
+.tweetForm label {
     display: inline-block;
     width: 100px;
     margin-right: 10px;
@@ -172,7 +172,7 @@ nav:nth-child(1) {
     font-size: 1.2em;
 }
 
-.makeDomoSubmit {
+.makeTweetSubmit {
     transition: background-color 0.4s ease;
     display: block;
     text-align: center;
@@ -188,11 +188,11 @@ nav:nth-child(1) {
     text-decoration: none;
 }
 
-.makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
+.makeTweetSubmit:link, .makeTweetSubmit:visited, .makeTweetSubmit:hover, .makeTweetSubmit:active {
     border-color: #a7a4a4;
 }
 
-.makeDomoSubmit:hover {
+.makeTweetSubmit:hover {
     transition: background-color 0.4s ease;
     background-color: #338acc;
 }
