@@ -22,7 +22,7 @@ const handleDomo = (e) => {
   };
   
 
-const DomoForm =(props) =>{
+const TweetForm =(props) =>{
     return(
         <form id='domoForm'
             name='domoForm'
@@ -66,7 +66,7 @@ const handleDelete = async (domoId) => {
     }
   };
   
-const DomoList= (props)=>{
+const TweetList= (props)=>{
 
     if(props.domos.length ===0){
         return (
@@ -99,7 +99,7 @@ const loadDomosFromServer = async()=>{
         const response =await fetch('/getDomos');
         const data = await response.json();
         ReactDOM.render(
-            <DomoList domos = {data.domos}/>,
+            <TweetList domos = {data.domos}/>,
             document.getElementById('domos')
         );      
 }
@@ -107,11 +107,11 @@ const loadDomosFromServer = async()=>{
 
 const init =()=>{
     ReactDOM.render(
-        <DomoForm/>,
+        <TweetForm/>,
         document.getElementById('makeDomo')
     );
     ReactDOM.render(
-        <DomoList domos={[]}/>,
+        <TweetList domos={[]}/>,
         document.getElementById('domos')
     );
     loadDomosFromServer();
