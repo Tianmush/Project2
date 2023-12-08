@@ -6,74 +6,73 @@ const handleTweet = (e) => {
     e.preventDefault();
     helper.hideError();
   
-    const name = e.target.querySelector('#resName').value;
-    
-
+    const resName = e.target.querySelector('#resName').value;
     const tweetmsg = e.target.querySelector('#tweetmsg').value;
   
-    if (!name || !tweetmsg ) {
-      helper.handleError('All fields are required');
+    if (!resName || !tweetmsg) {
+      helper.handleError('Receiver username and message are required!');
       return false;
     }
-    
-    helper.sendPost(e.target.action, { name,  tweetmsg }, loadTweetsFromServer);
-    
+  
+    helper.sendPost(e.target.action, { resName, tweetmsg }, loadTweetsFromServer);
+  
     return false;
   };
   
+  
 
-const TweetForm =(props) =>{
-    return(
-        <form id='tweetForm'
-            name='tweetForm'
-            onSubmit={handleTweet}
-            action='/maker'
-            method='POST'
-            className='tweetForm'        
-        >
-            <label htmlFor='name'>Name:</label>
-            <input id='resName' type='text' name='name' placeholder='Receiver Username' />
-
-
-            <label htmlFor='name'>Tweet:</label>
-            <input id='tweetmsg' type='text' name='tweetmsg' placeholder='Share your Thoughts' />
-            
-            <input className='makeTweetSubmit' type='submit'value='Tweet' />
-
-        </form>
-    );
-};
-
-
-
-
-const TweetList= (props)=>{
-
-    if(props.domos.length ===0){
-        return (
-            <div className='tweetList'>
-                <h3 className='emptyDomo'>No Tweets Yet!</h3>
-            </div>
-        );
-    }
-    const tweetNodes =props.domos.map(domo=>{
-        return (
-            <div key={domo._id} className='domo'>
-                <img src='/assets/img/Twitter.png' alt='Twitter' className='domoFace' />
-                <h3 className='tweetName'>TO: {domo.name} </h3>
-                <p className='tweetmsg'>Tweet: {domo.tweetmsg}</p>
-
-            </div>
-        );
-    });
-
+  const TweetForm = (props) => {
     return (
-        <div className='tweetList'>
-            {tweetNodes}
-        </div>
-    )
+      <form
+        id='tweetForm'
+        name='tweetForm'
+        onSubmit={handleTweet}
+        action='/maker'
+        method='POST'
+        className='tweetForm'
+      >
+        {/* Existing fields */}
+        <label htmlFor='resName'>To:</label>
+        <input id='resName' type='text' name='resName' placeholder='Receiver Username' />
 
-}
+        <label htmlFor='tweetmsg'>Message:</label>
+        <input id='tweetmsg' type='text' name='tweetmsg' placeholder='Type your message' />
+
+  
+        <input className='makeTweetSubmit' type='submit' value='Tweet' />
+      </form>
+    );
+  };
+
+
+  const TweetList = (props) => {
+    if (props.domos.length === 0) {
+      return (
+        <div className='tweetList'>
+          <h3 className='emptyDomo'>No Tweets Yet!</h3>
+        </div>
+      );
+    }
+  
+    const tweetNodes = props.domos.map((domo) => {
+      const senderName = domo.sender ? domo.sender.username : 'Unknown Sender';
+      const receiverName = domo.receiver ? domo.receiver.username : 'Unknown Receiver';
+  
+      return (
+        <div key={domo._id} className='domo'>
+          <img src='/assets/img/Twitter.png' alt='Twitter' className='domoFace' />
+          <h3 className='tweetName'>From: {senderName} | To: {receiverName}</h3>
+          <p className='tweetmsg'>Message: {domo.message}</p>
+        </div>
+      );
+    });
+  
+    return (
+      <div className='tweetList'>
+        {tweetNodes}
+      </div>
+    );
+  };
 
 const loadTweetsFromServer = async()=>{
         const response =await fetch('/getDomos');

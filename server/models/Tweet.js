@@ -1,32 +1,30 @@
 const mongoose = require('mongoose');
 const _ = require('underscore');
 
-const setName = (name) => _.escape(name).trim();
-const setTweet = (tweetmsg) => _.escape(tweetmsg).trim();
 
 const TweetSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-    set: setName,
-  },
-  tweetmsg: {
-    type: String,
-    required: true,
-    trim: true,
-    set: setTweet,
-  },
-  owner: {
+  sender: {
     type: mongoose.Schema.ObjectId,
     required: true,
     ref: 'Account',
+  },
+  receiver: {
+    type: mongoose.Schema.ObjectId,
+    required: true,
+    ref: 'Account',
+  },
+  message: {
+    type: String,
+    required: true,
+    trim: true,
   },
   createdDate: {
     type: Date,
     default: Date.now,
   },
 });
+
+// ... rest of the schema remains unchanged
 
 
 TweetSchema.statics.toAPI = (doc) => ({
