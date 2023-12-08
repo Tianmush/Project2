@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const _ = require('underscore');
 
 const setName = (name) => _.escape(name).trim();
-
-const DomoSchema = new mongoose.Schema({
+const setMessage = (message) => _.escape(message).trim();
+const TweetSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -13,6 +13,7 @@ const DomoSchema = new mongoose.Schema({
   message: {
     type: String,
     trim: true,
+    set:setMessage,
   },
   owner: {
     type: mongoose.Schema.ObjectId,
@@ -26,11 +27,11 @@ const DomoSchema = new mongoose.Schema({
 });
 
 
-DomoSchema.statics.toAPI = (doc) => ({
+TweetSchema.statics.toAPI = (doc) => ({
   name: doc.name,
   message: doc.message,
  
 });
 
-const DomoModel = mongoose.model('Domo', DomoSchema);
-module.exports = DomoModel;
+const TweetModel = mongoose.model('Tweet', TweetSchema);
+module.exports = TweetModel;
