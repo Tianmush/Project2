@@ -78,18 +78,18 @@ const handleTweet = (e) => {
   };
   
 
-const loadTweetsFromServer = async()=>{
-  try {
-    const response = await fetch('/getTweets');
-    const data = await response.json();
-    ReactDOM.render(
-      <TweetList tweets={data.tweets} userId={data.userId} />,
-      document.getElementById('tweets')
-    );
-  } catch (error) {
-    console.error('Error loading tweets', error);
-  }    
-};
+  const loadTweetsFromServer = async()=>{
+    try {
+      const response = await fetch('/getTweets');
+      const data = await response.json();
+      ReactDOM.render(
+        <TweetList tweets={data.tweets} userId={data.userId} />,
+        document.getElementById('tweets')
+      );
+    } catch (error) {
+      console.error('Error loading tweets', error);
+    }    
+  };
 
 
 
@@ -126,8 +126,37 @@ const UserProfile = () => {
 };
 
 
+const UserList = (props) => {
+  if (props.users.length === 0) {
+    return (
+      <div className='userList'>
+        <h3 className='emptyUser'>No Users Yet!</h3>
+      </div>
+    );
+  }
 
+  const userNodes = props.users.map((user) => (
+    
+    <div key={user._id} className='user'>
+      <h3 className='userName'>{user.username}</h3>
+    </div>
+  ));
 
+  return <div className='userList'>{userNodes}</div>;
+};
+
+const loadUsersFromServer = async () => {
+  try {
+    const response = await fetch('/getAllUsers');
+    const data = await response.json();
+    ReactDOM.render(
+      <UserList users={data.users} />,
+      document.getElementById('users')
+    );
+  } catch (error) {
+    console.error('Error loading users', error);
+  }
+};
 
 
 const init =()=>{
@@ -143,10 +172,13 @@ const init =()=>{
         <UserProfile />, 
         document.getElementById('profile')
     ); // Render the UserProfile component
+    ReactDOM.render(
+      <UserList users={[]} />,
+      document.getElementById('users')
+    ); // Render the UserList component
   
-    
-    
     loadTweetsFromServer();
+    loadUsersFromServer();
 };
 
 

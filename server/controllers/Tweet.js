@@ -65,13 +65,19 @@ const getUserData = (req, res) => {
     email: req.session.account.email,
     // Add other user data fields as needed
   };
-  
- 
-
   return res.json({ userData });
 };
 
-
+const getAllUsers = async (req, res) => {
+  try {
+   
+    const users = await AccountModel.find({}, 'username').lean().exec();
+    return res.json({ users });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Error retrieving users!' });
+  }
+};
 
 
 
@@ -81,5 +87,5 @@ module.exports = {
   makeTweet,
   getTweets,
   getUserData,
-  
+  getAllUsers,
 };
