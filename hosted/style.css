@@ -47,7 +47,7 @@ nav {
     font-size: 1.2em;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     padding: 30px;
 }
 
@@ -78,7 +78,7 @@ nav {
     margin: 20px auto;
     padding: 15px 0;
     width: 100%;
-    background-color: #cbd633;
+    background-color: #33b5d6;
     border: none;
     border-radius: 20px;
     color: white;
@@ -88,7 +88,7 @@ nav {
 }
 
 .formSubmit:hover, .makeTweetSubmit:hover {
-    background-color: #c8ca35;
+    background-color: #35caca;
 }
 
 /* Profile Section styles */
@@ -114,9 +114,9 @@ nav {
     margin: 0 auto;
     margin-top: 15px;
     margin-bottom: 15px;
-    border: 2px solid #a0c53a;
+    border: 2px solid #3ac5ba;
     border-radius: 8px;
-    background-color: #a1db34;
+    background-color: #34dbbf;
     padding: 20px;
     min-height: 60px;
     overflow: hidden;
@@ -124,8 +124,8 @@ nav {
 }
 
 .tweet:hover {
-    border-color: #c8ca35;
-    background-color: #c8ca35;
+    border-color: #2980b9;
+    background-color: #2980b9;
 }
 
 .tweetFace {
@@ -153,6 +153,24 @@ nav {
         max-width: 100%;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .hidden {
     display: none;
@@ -184,6 +202,11 @@ nav {
 #errorMessage {
     font-size: 1.2em;
     font-weight: bold;
-    color: red;
+    color: rgb(58, 5, 5);
     font-style: italic;
 }
+
+
+
+
+

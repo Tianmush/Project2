@@ -85,17 +85,20 @@ const loadTweetsFromServer = async()=>{
         );      
 }
 
-
 const UserProfile = () => {
-  const [userData, setUserData] = useState({}); // State to hold user data
+  const [userData, setUserData] = useState({ username: '', email: '' });
 
   useEffect(() => {
-    // Fetch user data and update state
     const fetchUserData = async () => {
       try {
-        const response = await fetch('/getUserData'); // Adjust the endpoint accordingly
+        const response = await fetch('/getUserData');
         const data = await response.json();
-        setUserData(data.userData);
+
+        // Update the state with the received user data
+        setUserData({
+          username: data.userData.username || '',
+          email: data.userData.email || '',
+        });
       } catch (error) {
         console.error('Error fetching user data', error);
       }
@@ -109,7 +112,6 @@ const UserProfile = () => {
       <h2>My Profile</h2>
       <p>Username: {userData.username}</p>
       <p>Email: {userData.email}</p>
-
     </div>
   );
 };
