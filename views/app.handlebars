@@ -9,11 +9,33 @@
      crossorigin="anonymous"></script>
 
 
+
 </head>
 <body>
   <nav><a href="/login"><img id="logo" src="/assets/img/Logo.png" alt="logo"/></a>
     <div class="navlink"><a href="/logout">Log out</a></div>
   </nav>
+
+
+<div id="profileModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeProfileModal">&times;</span>
+    <h2>Your Profile</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" readonly>
+    <label for="email">Email:</label>
+    <input type="text" id="email" readonly>
+    <!-- Add more fields as needed -->
+    <button id="editProfileButton">Edit Profile</button>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4" id="col3">
+      <section id="profile"></section>
+    </div>
+</div>
+
 
 
 
@@ -50,7 +72,7 @@
 
   <div id="tweetMessage" class='hidden'>
     <img id="speech" src="/assets/img/speech.png" alt="speech box"/>
-    <h3><span id="errorMessage"></span></h3>
+    <span id="errorMessage"></span>
     <img id="tweet" src="assets/img/Twitter.png" alt="tweet"/>
   </div>
   <script src="/assets/appBundle.js"></script>

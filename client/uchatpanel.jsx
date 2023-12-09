@@ -1,7 +1,7 @@
 const helper =require('./helper.js');
 const React =require('react');
 const ReactDOM =require('react-dom');
-
+import { useState, useEffect } from 'react';
 
 
 const handleTweet = (e) => {
@@ -86,6 +86,34 @@ const loadTweetsFromServer = async()=>{
 }
 
 
+const UserProfile = () => {
+  const [userData, setUserData] = useState({}); // State to hold user data
+
+  useEffect(() => {
+    // Fetch user data and update state
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('/getUserData'); // Adjust the endpoint accordingly
+        const data = await response.json();
+        setUserData(data.userData);
+      } catch (error) {
+        console.error('Error fetching user data', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  return (
+    <div className="profile">
+      <h2>My Profile</h2>
+      <p>Username: {userData.username}</p>
+      <p>Email: {userData.email}</p>
+
+    </div>
+  );
+};
+
 const init =()=>{
     ReactDOM.render(
         <TweetForm/>,
@@ -95,6 +123,11 @@ const init =()=>{
         <TweetList tweets={[]}/>,
         document.getElementById('tweets')
     );
+    ReactDOM.render(
+        <UserProfile />, 
+        document.getElementById('profile')
+    ); // Render the UserProfile component
+  
     loadTweetsFromServer();
 }
 window.onload = init;

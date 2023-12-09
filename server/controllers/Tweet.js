@@ -50,10 +50,20 @@ const getTweets = async (req, res) => {
   }
 };
 
+
+const getUserData = (req, res) => {
+  const userData = {
+    username: req.session.account.username,
+    email: req.session.account.email,
+    // Add other user data fields as needed
+  };
+
+  return res.json({ userData });
+};
 module.exports = {
   uchatpanelPage,
   makeTweet,
   getTweets,
-  
+  getUserData,
   
 };

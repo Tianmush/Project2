@@ -1,37 +1,171 @@
-
+/* Reset some default styles */
 html, body {
     height: 100%;
     width: 100%;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navigation styles */
+nav {
+    width: 100%;
+    height: 60px;
+    background-color: #3498db;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #logo {
     height: 40px;
-    width: 40;
-    padding-top: 5px;
-    float:left;
-    border-radius: 8px;
-}
-
-nav {
-    width: 100%;
-    height: 50px;
-    background-color: #ffffff;
-}
-
-nav:nth-child(1) {
-    padding-left: 25px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
 }
 
 .navlink {
-    padding: 5px;
-    padding-top: 12px;
-    padding-left: 20px;
-    color: rgb(255, 255, 255);
+    padding: 15px 20px;
+    color: #ffffff;
     font-size: 1.3em;
-    float: left;
+    text-decoration: none;
+    transition: background-color 0.4s ease;
+}
+
+.navlink:hover {
+    background-color: #2980b9;
+}
+
+/* Form styles */
+.mainForm, .tweetForm {
+    max-width: 400px;
+    margin: 0 auto;
+    padding-top: 8%;
+    font-size: 1.2em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.mainForm h3, .tweetForm h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.mainForm label, .tweetForm label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+#user, #pass, #pass2, #email {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.formSubmit, .makeTweetSubmit {
+    display: block;
+    margin: 20px auto;
+    padding: 15px 0;
+    width: 100%;
+    background-color: #3498db;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+}
+
+.formSubmit:hover, .makeTweetSubmit:hover {
+    background-color: #2980b9;
+}
+
+/* Profile Section styles */
+.profile {
+    background-color: #ecf0f1;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    color: #333;
+}
+
+/* Tweet styles */
+#tweets {
+    max-width: 40%;
+    min-width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.tweet {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    background-color: #3498db;
+    padding: 20px;
+    min-height: 60px;
+    overflow: hidden;
+    transition: border-color 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.tweet:hover {
+    border-color: #2980b9;
+    background-color: #2980b9;
+}
+
+.tweetFace {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.tweetName {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.tweetMessage {
+    text-align: left;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .profile, .mainForm, .tweetForm {
+        max-width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+nav:nth-child(1) {
+    padding-left: 25px;
 }
 
 .navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
@@ -117,30 +251,10 @@ nav:nth-child(1) {
     
 
 }
-#col1,#col2{
-    padding-top: 8%;
-}
 
 .big{
     font-size: 60px;
     padding-bottom: 5%;
-}
-.col-sm-4 {
-    position: relative;
-    min-height: 300px; /* Adjust the minimum height as needed */
-}
-.ad-container {
-    position: absolute; /* Position the ad container relative to the col-sm-4 */
-    top: 50%;           /* Center the ad vertically */
-    left: 50%;          /* Center the ad horizontally */
-    transform: translate(-50%, -50%); /* Center the ad using transform */
-    text-align: center; /* Center the ad content */
-}
-
-.ad-container img {
-    max-width: 100%;    /* Ensure the ad image is responsive */
-    border-radius: 8px; /* Optional: Add border-radius for rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
 }
 
 
@@ -237,94 +351,7 @@ nav:nth-child(1) {
     font-style: italic;
 }
 
-#tweet {
-    z-index: 225;
-    margin-top: -20px;
-    margin-left: 135px;
-    height: 450px;
-    width: 300px;
-    -ms-transform: rotate(330deg);
-    -webkit-transform: rotate(330deg); 
-    transform: rotate(330deg);
-}
-
-#tweets {
-    width: 40%;
-    min-width: 400px;
-    border: 2px solid #55acee;
-    border-radius: 4px;
-    margin: 0 auto;
-    margin-top: 100px;
-}
-
-.tweet {
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border: 2px solid #55acee;
-    border-radius: 4px;
-    background-color: #55acee;
-    padding: 10px;
-    min-height:60px;
-    overflow: hidden;
-}
-
-.tweet:hover {
-    transition: border-color 0.2s ease-out;
-    border-color: rgba(255,255,255, 0.8);
-    transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
-}
 
 
 
 
-
-
-
-
-img.tweetFace {
-    margin-left: 25px;
-    margin-right: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 4px;
-    margin-top:10px;
-    float:left;
-}
-
-h3.tweetlist {
-    width: 400px;
-    font-size: 1.5em;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 18px;
-}
-
-
-h3.tweetName {
-    float:left;
-    width: 200px;
-    font-weight: bold;
-    padding-left: 65px;
-    font-size: 1.5em;
-}
-
-h3.tweetMessage {
-    float:right;
-    text-align: left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
-}
-
-
-.tweet:first-child {
-    margin-top: 10px;
-}
-
-.tweet:last-child {
-    margin-bottom:10px;
-}

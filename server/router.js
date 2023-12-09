@@ -14,6 +14,7 @@ const router = (app) => {
   app.get('/uchatpanel', mid.requiresLogin, controllers.Tweet.uchatpanelPage);
   app.post('/uchatpanel', mid.requiresLogin, controllers.Tweet.makeTweet);
 
+  app.get('/getUserData', mid.requiresLogin, controllers.Tweet.getUserData);
 
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
