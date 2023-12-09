@@ -57,17 +57,56 @@ const getUserData = (req, res) => {
     // Add other user data fields as needed
   };
   
-  console.log('User Data:', userData); // Add this line for debugging
-
-  console.log('Session:', req.session); // Add this line for additional debugging
-
   return res.json({ userData });
 };
+
+const addFriend = async (req, res) => {
+  const userId = req.session.account._id;
+  const friendId = req.params.friendId;
+
+  try {
+      // Check if the friend is already added
+      const user = await AccountModel.findById(userId).exec();
+      if (user.friends.includes(friendId)) {
+          return res.status(400).json({ error: 'This user is already your friend.' });
+      }
+
+      // Add friend
+      user.friends.push(friendId);
+      await user.save();
+
+      // You can also update the friend's list on the client side
+
+      return res.status(200).json({ friend: { _id: friendId, username: 'username' } });
+  } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'An error occurred while adding a friend.' });
+  }
+};
+
+const searchUser = async (req, res) => {
+  const searchUsername = req.query.username;
+
+  try {
+      const users = await AccountModel.find({ username: { $regex: searchUsername, $options: 'i' } }).exec();
+      return res.json({ results: users });
+  } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'An error occurred while searching for users.' });
+  }
+};
+
+
+
+
+
 
 module.exports = {
   uchatpanelPage,
   makeTweet,
   getTweets,
   getUserData,
+  addFriend,
+  searchUser,
   
 };
