@@ -123,62 +123,8 @@ const UserProfile = () => {
 
 
 
-const AddFriend = () => {
-  const [searchResults, setSearchResults] = useState([]);
-  const [searchUser, setSearchUser] = useState(''); // Add state for the search input value
-
-  const handleSearch = async () => {
-      if (!searchUser) {
-          helper.handleError('Please enter a username to search.');
-          return;
-      }
-
-      const response = await fetch(`/searchUser?username=${searchUser}`);
-      const data = await response.json();
-
-      setSearchResults(data.results);
-  };
-
-  const handleAddFriend = async (friendId) => {
-      const response = await fetch(`/addFriend/${friendId}`, { method: 'POST' });
-      const data = await response.json();
-
-      if (data.error) {
-          helper.handleError(data.error);
-      } else {
-          // You can update the UI or display a success message
-          console.log(`Friend added successfully: ${data.friend.username}`);
-      }
-  };
-
-  return (
-      <div>
-          <input
-              type="text"
-              id="searchUser"
-              placeholder="Search for a user"
-              value={searchUser}
-              onChange={(e) => setSearchUser(e.target.value)}
-          />
-          <button onClick={handleSearch}>Search</button>
-          <div>
-              {searchResults.map((user) => (
-                  <div key={user._id}>
-                      <p>{user.username}</p>
-                      <button onClick={() => handleAddFriend(user._id)}>Add Friend</button>
-                  </div>
-              ))}
-          </div>
-      </div>
-  );
-};
-
 
 const init =()=>{
-  ReactDOM.render(
-    <AddFriend />,
-    document.getElementById('addfriends')
-  );
     ReactDOM.render(
         <TweetForm/>,
         document.getElementById('makeTweet')
