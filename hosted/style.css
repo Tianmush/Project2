@@ -39,6 +39,19 @@ nav {
     background-color: #ffffff;
 }
 
+.navlink a {
+    text-decoration: none;
+    color: #eeeaea;
+    font-size: 1.3em;
+    transition: color 0.4s ease;
+}
+
+.navlink a:hover {
+    color: #0a0808;
+}
+
+
+
 /* Form styles */
 .mainForm, .tweetForm {
     max-width: 400px;
@@ -181,6 +194,40 @@ nav {
     background-color: #f0f0f0;
     cursor: pointer;
 }
+.scrollable-container {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+    border: 1px solid #ddd; /* Optional: Add a border for better visual separation */
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+/* Customize scrollbar appearance */
+.scrollable-container::-webkit-scrollbar {
+    width: 12px; /* Adjust the width as needed */
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0; /* Scrollbar thumb color */
+    border-radius: 6px; /* Rounded corners */
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+    background-color: #f0f0f0; /* Scrollbar track color */
+    border-radius: 8px; /* Rounded corners */
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
