@@ -206,7 +206,7 @@ nav:nth-child(1) {
 
 
 
-#domoMessage {
+#tweetMessage {
     top: 250px;
     width: 250px;
     height: 650px;
@@ -216,7 +216,7 @@ nav:nth-child(1) {
     overflow: hidden;
 }
 
-#domoMessage h3 {
+#tweetMessage h3 {
     width: 200px;
     position: absolute;
     top: 0px;
@@ -236,7 +236,7 @@ nav:nth-child(1) {
     font-style: italic;
 }
 
-#domo {
+#tweet {
     z-index: 225;
     margin-top: -20px;
     margin-left: 135px;
@@ -247,7 +247,7 @@ nav:nth-child(1) {
     transform: rotate(330deg);
 }
 
-#domos {
+#tweets {
     width: 40%;
     min-width: 400px;
     border: 2px solid #55acee;
@@ -256,7 +256,7 @@ nav:nth-child(1) {
     margin-top: 100px;
 }
 
-.domo {
+.tweet {
     width: 95%;
     margin: 0 auto;
     margin-top: 2px;
@@ -269,7 +269,7 @@ nav:nth-child(1) {
     overflow: hidden;
 }
 
-.domo:hover {
+.tweet:hover {
     transition: border-color 0.2s ease-out;
     border-color: rgba(255,255,255, 0.8);
     transition: background-color 2.6s ease-out;
@@ -283,7 +283,7 @@ nav:nth-child(1) {
 
 
 
-img.domoFace {
+img.tweetFace {
     margin-left: 25px;
     margin-right: 10px;
     height: 50px;
@@ -310,7 +310,7 @@ h3.tweetName {
     font-size: 1.5em;
 }
 
-h3.domoMessage {
+h3.tweetMessage {
     float:right;
     text-align: left;
     width: 100px;
@@ -320,10 +320,10 @@ h3.domoMessage {
 }
 
 
-.domo:first-child {
+.tweet:first-child {
     margin-top: 10px;
 }
 
-.domo:last-child {
+.tweet:last-child {
     margin-bottom:10px;
 }

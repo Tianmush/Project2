@@ -48,23 +48,23 @@ const handleTweet = (e) => {
 
 
   const TweetList = (props) => {
-    if (props.domos.length === 0) {
+    if (props.tweets.length === 0) {
       return (
         <div className='tweetList'>
-          <h3 className='emptyDomo'>No Tweets Yet!</h3>
+          <h3 className='emptyTweet'>No Tweets Yet!</h3>
         </div>
       );
     }
   
-    const tweetNodes = props.domos.map((domo) => {
-      const senderName = domo.sender ? domo.sender.username : 'Unknown Sender';
-      const receiverName = domo.receiver ? domo.receiver.username : 'Unknown Receiver';
+    const tweetNodes = props.tweets.map((tweet) => {
+      const senderName = tweet.sender ? tweet.sender.username : 'Unknown Sender';
+      const receiverName = tweet.receiver ? tweet.receiver.username : 'Unknown Receiver';
   
       return (
-        <div key={domo._id} className='domo'>
-          <img src='/assets/img/Twitter.png' alt='Twitter' className='domoFace' />
+        <div key={tweet._id} className='tweet'>
+          <img src='/assets/img/Twitter.png' alt='Twitter' className='tweetFace' />
           <h3 className='tweetName'>From: {senderName} | To: {receiverName}</h3>
-          <p className='tweetmsg'>Message: {domo.message}</p>
+          <p className='tweetmsg'>Message: {tweet.message}</p>
         </div>
       );
     });
@@ -77,11 +77,11 @@ const handleTweet = (e) => {
   };
 
 const loadTweetsFromServer = async()=>{
-        const response =await fetch('/getDomos');
+        const response =await fetch('/getTweets');
         const data = await response.json();
         ReactDOM.render(
-            <TweetList domos = {data.domos}/>,
-            document.getElementById('domos')
+            <TweetList tweets = {data.tweets}/>,
+            document.getElementById('tweets')
         );      
 }
 
@@ -89,11 +89,11 @@ const loadTweetsFromServer = async()=>{
 const init =()=>{
     ReactDOM.render(
         <TweetForm/>,
-        document.getElementById('makeDomo')
+        document.getElementById('makeTweet')
     );
     ReactDOM.render(
-        <TweetList domos={[]}/>,
-        document.getElementById('domos')
+        <TweetList tweets={[]}/>,
+        document.getElementById('tweets')
     );
     loadTweetsFromServer();
 }

@@ -6,7 +6,7 @@ const AccountModel = require('../models/Account'); // Adjust the path accordingl
 const makerPage = (req, res) => res.render('app');
 
 
-const makeDomo = async (req, res) => {
+const makeTweet = async (req, res) => {
   if (!req.body.resName || !req.body.tweetmsg) {
     return res.status(400).json({ error: 'Receiver username and message are required!' });
   }
@@ -38,12 +38,12 @@ const makeDomo = async (req, res) => {
 };
 
 
-const getDomos = async (req, res) => {
+const getTweets = async (req, res) => {
   try {
     const query = {};
     const docs = await TweetModel.find(query).populate('sender receiver', 'username').lean().exec();
 
-    return res.json({ domos: docs });
+    return res.json({ tweets: docs });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'Error retrieving tweets!' });
@@ -52,8 +52,8 @@ const getDomos = async (req, res) => {
 
 module.exports = {
   makerPage,
-  makeDomo,
-  getDomos,
+  makeTweet,
+  getTweets,
   
   
 };
