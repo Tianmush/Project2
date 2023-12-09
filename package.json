@@ -44,6 +44,7 @@
     "mongoose": "^7.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-twitter-embed": "^4.0.4",
     "reactdom": "^2.0.0",
     "redis": "^4.6.5",
     "serve-favicon": "^2.5.0",
