@@ -57,6 +57,8 @@ const getUserData = (req, res) => {
     // Add other user data fields as needed
   };
   
+ 
+
   return res.json({ userData });
 };
 
