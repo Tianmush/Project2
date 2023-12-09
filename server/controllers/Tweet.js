@@ -3,7 +3,7 @@ const TweetModel = require('../models/Tweet');
 const AccountModel = require('../models/Account'); // Adjust the path accordingly
 
 
-const makerPage = (req, res) => res.render('app');
+const uchatpanelPage = (req, res) => res.render('app');
 
 
 const makeTweet = async (req, res) => {
@@ -33,7 +33,7 @@ const makeTweet = async (req, res) => {
     return res.status(201).json({ name: newTweet.name, tweetmsg: newTweet.tweetmsg });
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ error: 'An error occurred making tweet!' });
+    return res.status(500).json({ error: 'An error occurred while Chatting!' });
   }
 };
 
@@ -46,12 +46,12 @@ const getTweets = async (req, res) => {
     return res.json({ tweets: docs });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ error: 'Error retrieving tweets!' });
+    return res.status(500).json({ error: 'Error retrieving chats!' });
   }
 };
 
 module.exports = {
-  makerPage,
+  uchatpanelPage,
   makeTweet,
   getTweets,
   

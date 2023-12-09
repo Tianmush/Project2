@@ -29,7 +29,7 @@ const handleTweet = (e) => {
         id='tweetForm'
         name='tweetForm'
         onSubmit={handleTweet}
-        action='/maker'
+        action='/uchatpanel'
         method='POST'
         className='tweetForm'
       >
@@ -41,7 +41,7 @@ const handleTweet = (e) => {
         <input id='tweetmsg' type='text' name='tweetmsg' placeholder='Type your message' />
 
   
-        <input className='makeTweetSubmit' type='submit' value='Tweet' />
+        <input className='makeTweetSubmit' type='submit' value='TSend Chat' />
       </form>
     );
   };
