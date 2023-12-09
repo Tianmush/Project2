@@ -29,14 +29,14 @@ nav {
 
 .navlink {
     padding: 15px 20px;
-    color: #ffffff;
+    color: #000000;
     font-size: 1.3em;
     text-decoration: none;
     transition: background-color 0.4s ease;
 }
 
 .navlink:hover {
-    background-color: #2980b9;
+    background-color: #ffffff;
 }
 
 /* Form styles */
@@ -47,7 +47,7 @@ nav {
     font-size: 1.2em;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
 }
 
@@ -78,7 +78,7 @@ nav {
     margin: 20px auto;
     padding: 15px 0;
     width: 100%;
-    background-color: #3498db;
+    background-color: #cbd633;
     border: none;
     border-radius: 20px;
     color: white;
@@ -88,7 +88,7 @@ nav {
 }
 
 .formSubmit:hover, .makeTweetSubmit:hover {
-    background-color: #2980b9;
+    background-color: #c8ca35;
 }
 
 /* Profile Section styles */
@@ -114,9 +114,9 @@ nav {
     margin: 0 auto;
     margin-top: 15px;
     margin-bottom: 15px;
-    border: 2px solid #3498db;
+    border: 2px solid #a0c53a;
     border-radius: 8px;
-    background-color: #3498db;
+    background-color: #a1db34;
     padding: 20px;
     min-height: 60px;
     overflow: hidden;
@@ -124,8 +124,8 @@ nav {
 }
 
 .tweet:hover {
-    border-color: #2980b9;
-    background-color: #2980b9;
+    border-color: #c8ca35;
+    background-color: #c8ca35;
 }
 
 .tweetFace {
@@ -143,7 +143,6 @@ nav {
 
 .tweetMessage {
     text-align: left;
-    font-weight: bold;
     font-size: 1.2em;
     color: #fff;
 }
@@ -155,171 +154,9 @@ nav {
     }
 }
 
-
-
-
-
-
-
-
-
-
-nav:nth-child(1) {
-    padding-left: 25px;
-}
-
-.navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
-    color: rgba(0, 0, 0, 0.958);
-    text-decoration: none;
-    padding: 5px;
-    border: none;
-    transition: background-color 0.4s ease;
-    
-}
-
-.navlink a:hover {
-    transition: background-color 0.8s ease;
-     color: #3c3b3b;
-}
-
-
-.mainForm {
-    height: 300px;
-    width: 350px;
-    margin: 0 auto;
-    padding-top: 8%;
-    font-size: 1.2em;
-}
-
-.mainForm h3 {
-    text-align: center;
-}
-
-.mainForm label {
-    display: inline-block;
-    width: 100px;
-    margin-right: 10px;
-    text-align: right;
-    font-size: 1.2em;
-}
-
-.formSubmit {
-    transition: background-color 0.4s ease;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 14px;
-    font-size: 1.2em;
-    width: 350px;
-    background-color: #070707;
-    border-radius: 20px;
-    border-color: #000000;
-    padding: 3px 0px;
-    color: white;
-    text-decoration: none;
-}
-
-.formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
-   
-    border-color: #a7a4a4;
-}
-
-.formSubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: #3c3b3b;
-    border-color: #3c3b3b;
-}
-
-#user, #pass, #pass2,#email {
-    text-align: center;
-    font-size: 1.1em;
-    width: 200px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-}
-
-#user:focus, #pass:focus, #pass2:focus {
-    outline: none;
-    box-shadow: 0px 0px 1px 1px #55acee;
-}
-
 .hidden {
     display: none;
 }
-.headtext{
-    padding-left: 25%;
-    
-
-}
-
-.big{
-    font-size: 60px;
-    padding-bottom: 5%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.tweetForm {
-    height: 300px;
-    width: 350px;
-    margin: 0 auto;
-    padding-top: 8%;
-    font-size: 1.2em;
-}
-
-.tweetForm label {
-    display: inline-block;
-    width: 100px;
-    margin-right: 10px;
-    text-align: right;
-    font-size: 1.2em;
-}
-
-.makeTweetSubmit {
-    transition: background-color 0.4s ease;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 14px;
-    font-size: 1.2em;
-    width: 350px;
-    background-color: #070707;
-    border-radius: 20px;
-    border-color: #000000;
-    padding: 3px 0px;
-    color: white;
-    text-decoration: none;
-}
-
-.makeTweetSubmit:link, .makeTweetSubmit:visited, .makeTweetSubmit:hover, .makeTweetSubmit:active {
-    border-color: #a7a4a4;
-}
-
-.makeTweetSubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: #338acc;
-}
-
-
-
-
-
-
-
-
-
 
 #tweetMessage {
     top: 250px;
@@ -350,8 +187,3 @@ nav:nth-child(1) {
     color: red;
     font-style: italic;
 }
-
-
-
-
-
