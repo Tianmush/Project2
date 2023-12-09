@@ -59,6 +59,8 @@ const getUserData = (req, res) => {
   
   console.log('User Data:', userData); // Add this line for debugging
 
+  console.log('Session:', req.session); // Add this line for additional debugging
+
   return res.json({ userData });
 };
 

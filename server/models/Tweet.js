@@ -27,9 +27,9 @@ const TweetSchema = new mongoose.Schema({
 
 
 TweetSchema.statics.toAPI = (doc) => ({
-  name: doc.name,
-  tweetmsg:  doc.tweetmsg,
-  
+  sender: doc.sender,
+  receiver:doc.receiver,
+  message:  doc.message,
  
 });
 
