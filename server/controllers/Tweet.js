@@ -40,10 +40,19 @@ const makeTweet = async (req, res) => {
 
 const getTweets = async (req, res) => {
   try {
-    const query = {};
-    const docs = await TweetModel.find(query).populate('sender receiver', 'username').lean().exec();
+    const userId = req.session.account._id;
 
-    return res.json({ tweets: docs });
+    // Find tweets where the current user is the sender or receiver
+    const query = {
+      $or: [{ sender: userId }, { receiver: userId }],
+    };
+
+    const docs = await TweetModel.find(query)
+      .populate('sender receiver', 'username')
+      .lean()
+      .exec();
+
+    return res.json({ tweets: docs, userId });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: 'Error retrieving chats!' });

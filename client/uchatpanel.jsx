@@ -56,7 +56,12 @@ const handleTweet = (e) => {
       );
     }
   
-    const tweetNodes = props.tweets.map((tweet) => {
+    // Filter tweets where the current user is the sender or receiver
+    const filteredTweets = props.tweets.filter(
+      (tweet) => tweet.sender._id === props.userId || tweet.receiver._id === props.userId
+    );
+  
+    const tweetNodes = filteredTweets.map((tweet) => {
       const senderName = tweet.sender ? tweet.sender.username : 'Unknown Sender';
       const receiverName = tweet.receiver ? tweet.receiver.username : 'Unknown Receiver';
   
@@ -69,21 +74,22 @@ const handleTweet = (e) => {
       );
     });
   
-    return (
-      <div className='tweetList'>
-        {tweetNodes}
-      </div>
-    );
+    return <div className='tweetList'>{tweetNodes}</div>;
   };
+  
 
 const loadTweetsFromServer = async()=>{
-        const response =await fetch('/getTweets');
-        const data = await response.json();
-        ReactDOM.render(
-            <TweetList tweets = {data.tweets}/>,
-            document.getElementById('tweets')
-        );      
-}
+  try {
+    const response = await fetch('/getTweets');
+    const data = await response.json();
+    ReactDOM.render(
+      <TweetList tweets={data.tweets} userId={data.userId} />,
+      document.getElementById('tweets')
+    );
+  } catch (error) {
+    console.error('Error loading tweets', error);
+  }    
+};
 
 
 
