@@ -257,7 +257,54 @@ nav {
     height: 100vh; /* Set the height to 100% of the viewport height */
 }
 
+.friendForm {
+    margin-top: 20px;
+  }
+  
+  .friendForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .friendForm input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+  }
+  
+  .addFriendSubmit {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .addFriendSubmit:hover {
+    background-color: #45a049;
+  }
 
+  .friendList {
+    margin-top: 20px;
+  }
+  
+  .friendList h3.emptyFriend {
+    color: #555; /* Adjust the color as needed */
+  }
+  
+  .friendList .friend {
+    border: 1px solid #ddd; /* Border color for each friend box */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .friendList .friendName {
+    margin: 0;
+  }
 
 
 

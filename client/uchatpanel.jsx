@@ -94,6 +94,7 @@ const handleTweet = (e) => {
 
 
 
+//User Module
 const UserProfile = () => {
   const [userData, setUserData] = useState({ username: '', email: '' });
 
@@ -125,7 +126,7 @@ const UserProfile = () => {
   );
 };
 
-
+//User Module
 const UserList = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -160,6 +161,51 @@ const UserList = (props) => {
   );
 };
 
+
+
+
+
+
+//User Friend
+const handleAddFriend = (e) => {
+  e.preventDefault();
+  helper.hideError();
+
+  const frndName = e.target.querySelector('#frndName').value;
+
+  if (!frndName) {
+    helper.handleError('Friend username is required!');
+    return false;
+  }
+
+  helper.sendPost('/addFriend', { frndName }, loadFriendsFromServer);
+
+  return false;
+};
+
+const FriendForm = (props) => {
+  return (
+    <form
+      id='friendForm'
+      name='friendForm'
+      onSubmit={handleAddFriend}
+      action='/addFriend'
+      method='POST'
+      className='friendForm'
+    >
+      <label htmlFor='frndName'>Friend's Username:</label>
+      <input id='frndName' type='text' name='frndName' placeholder='Friend Username' />
+
+      <input className='addFriendSubmit' type='submit' value='Add Friend' />
+    </form>
+  );
+};
+
+
+
+
+
+
 const loadUsersFromServer = async () => {
   try {
     const response = await fetch('/getAllUsers');
@@ -174,27 +220,38 @@ const loadUsersFromServer = async () => {
 };
 
 
-const init =()=>{
+
+
+
+const init = () => {
     ReactDOM.render(
-        <TweetForm/>,
-        document.getElementById('makeTweet')
+      <TweetForm />,
+      document.getElementById('makeTweet')
     );
     ReactDOM.render(
-        <TweetList tweets={[]}/>,
-        document.getElementById('tweets')
+      <TweetList tweets={[]} />,
+      document.getElementById('tweets')
     );
     ReactDOM.render(
-        <UserProfile />, 
-        document.getElementById('profile')
+      <UserProfile />,
+      document.getElementById('profile')
     ); // Render the UserProfile component
     ReactDOM.render(
       <UserList users={[]} />,
       document.getElementById('users')
     ); // Render the UserList component
-  
-    loadTweetsFromServer();
-    loadUsersFromServer();
+
+    // Render FriendForm
+    ReactDOM.render(
+      <FriendForm />,
+      document.getElementById('makeFriend')
+    );
+
+    
+  loadTweetsFromServer();
+  loadUsersFromServer();
+  loadFriendsFromServer();
 };
 
-
 window.onload = init;
+
