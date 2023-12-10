@@ -127,22 +127,45 @@ const UserProfile = () => {
 
 
 const UserList = (props) => {
-  if (props.users.length === 0) {
-    return (
-      <div className='userList'>
-        <h3 className='emptyUser'>No Users Yet!</h3>
-      </div>
-    );
-  }
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const userNodes = props.users.map((user) => (
-    
-    <div key={user._id} className='user'>
-      <h3 className='userName'>{user.username}</h3>
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`/getAllUsers?search=${searchTerm}`);
+      const data = await response.json();
+      ReactDOM.render(<UserList users={data.users} />, document.getElementById('users'));
+    } catch (error) {
+      console.error('Error searching users', error);
+    }
+  };
+
+  const handleRadioSelect = (username) => {
+    // Implement the logic to pass the selected username to the makeTweet function
+    console.log(`Selected user: ${username}`);
+  };
+
+  return (
+    <div className='userList'>
+      <input
+        type='text'
+        placeholder='Search Users'
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <button onClick={handleSearch}>Search</button>
+
+      {props.users.map((user) => (
+        <div key={user._id} className='user'>
+          <h3 className='userName'>{user.username}</h3>
+          <input
+            type='radio'
+            name='selectedUser'
+            onChange={() => handleRadioSelect(user.username)}
+          />
+        </div>
+      ))}
     </div>
-  ));
-
-  return <div className='userList'>{userNodes}</div>;
+  );
 };
 
 const loadUsersFromServer = async () => {

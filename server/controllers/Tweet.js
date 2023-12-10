@@ -70,8 +70,14 @@ const getUserData = (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-   
-    const users = await AccountModel.find({}, 'username').lean().exec();
+    let query = {};
+
+    // Check if a search query is provided
+    if (req.query.search) {
+      query = { username: { $regex: req.query.search, $options: 'i' } };
+    }
+
+    const users = await AccountModel.find(query, 'username').lean().exec();
     return res.json({ users });
   } catch (err) {
     console.error(err);
