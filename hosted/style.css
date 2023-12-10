@@ -15,7 +15,7 @@ nav {
     background-color: #3498db;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    
     padding: 0 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -343,11 +343,11 @@ nav {
 }
 
 #tweetMessage {
-    top:12px;
+    top:15px;
    
     position: absolute;
     z-index: 0;
-    right: 50%;
+    right: 10%;
     overflow: hidden;
 }
 
@@ -362,7 +362,7 @@ nav {
 #errorMessage {
     font-size: 1.2em;
     font-weight: bold;
-    color: rgb(58, 5, 5);
+    color: rgb(247, 247, 247);
     font-style: italic;
 }
 
