@@ -94,6 +94,33 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+// Update the getTweetsForFriend function in server/controllers/Tweet.js
+const getTweetsForFriend = async (req, res) => {
+  try {
+    const userId = req.session.account._id;
+    const friendId = req.params.friendId;
+
+    // Find tweets where the current user is the sender and the selected friend is the receiver,
+    // or the current user is the receiver and the selected friend is the sender
+    const query = {
+      $or: [
+        { sender: userId, receiver: friendId },
+        { sender: friendId, receiver: userId },
+      ],
+    };
+
+    const docs = await TweetModel.find(query)
+      .populate('sender receiver', 'username')
+      .lean()
+      .exec();
+
+    return res.json({ tweets: docs, userId });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: 'Error retrieving chats!' });
+  }
+};
+
 
 
 
@@ -103,4 +130,5 @@ module.exports = {
   getTweets,
   getUserData,
   getAllUsers,
+  getTweetsForFriend,
 };

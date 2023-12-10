@@ -58,10 +58,52 @@ const getFriends = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while getting friends!' });
   }
 };
+const selectFriend = async (req, res) => {
+  const userId = req.session.account._id;
+  const friendId = req.params.friendId;
 
+  try {
+    // Check if the friend exists and is associated with the current user
+    const friend = await FriendModel.findOne({ user: userId, friend: friendId }).exec();
+
+    if (!friend) {
+      return res.status(404).json({ error: 'Friend not found!' });
+    }
+
+    // Perform the selection logic (you can update this as per your requirements)
+    // For example, you might want to set a selected flag in the database
+
+    return res.status(200).json({ error: 'Friend selected successfully' });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'An error occurred while selecting friend!' });
+  }
+};
+
+const deleteFriend = async (req, res) => {
+  const userId = req.session.account._id;
+  const friendId = req.params.friendId;
+
+  try {
+    // Check if the friend exists and is associated with the current user
+    const friend = await FriendModel.findOneAndDelete({ user: userId, friend: friendId }).exec();
+
+    if (!friend) {
+      return res.status(404).json({ error: 'Friend not found!' });
+    }
+
+    return res.status(200).json({ message: 'Friend deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'An error occurred while deleting friend!' });
+  }
+};
 module.exports = {
   uchatpanelPage,
   addFriend,
   getFriends,
+  selectFriend,
+  deleteFriend,
 
 };
+

@@ -40,14 +40,16 @@ const handleTweet = (e) => {
         <input id='tweetmsg' type='text' name='tweetmsg' placeholder='Type your message' />
 
   
-        <input className='makeTweetSubmit' type='submit' value='TSend Chat' />
+        <input className='makeTweetSubmit' type='submit' value='Send Chat' />
       </form>
     );
   };
 
 
   const TweetList = (props) => {
-    if (props.tweets.length === 0) {
+    const { tweets, userId, selectedFriendId } = props;
+  
+    if (tweets.length === 0) {
       return (
         <div className='tweetList'>
           <h3 className='emptyTweet'>No Tweets Yet!</h3>
@@ -55,10 +57,14 @@ const handleTweet = (e) => {
       );
     }
   
-    // Filter tweets where the current user is the sender or receiver
-    const filteredTweets = props.tweets.filter(
-      (tweet) => tweet.sender._id === props.userId || tweet.receiver._id === props.userId
-    );
+    // If a friend is selected, filter tweets based on the selected friend's ID
+    const filteredTweets = selectedFriendId
+      ? tweets.filter(
+          (tweet) =>
+            (tweet.sender._id === userId && tweet.receiver._id === selectedFriendId) ||
+            (tweet.sender._id === selectedFriendId && tweet.receiver._id === userId)
+        )
+      : tweets;
   
     const tweetNodes = filteredTweets.map((tweet) => {
       const senderName = tweet.sender ? tweet.sender.username : 'Unknown Sender';
@@ -192,6 +198,34 @@ const FriendForm = (props) => {
     </form>
   );
 };
+
+
+
+const handleSelectFriend = async (friendId) => {
+  try {
+    // Make a request to load tweets for the selected friend
+    const response = await fetch(`/getTweetsForFriend/${friendId}`);
+    const data = await response.json();
+
+    // Render the tweets for the selected friend
+    ReactDOM.render(
+      <TweetList tweets={data.tweets} userId={data.userId} selectedFriendId={friendId} />,
+      document.getElementById('tweets')
+    );
+  } catch (error) {
+    console.error('Error loading tweets for selected friend', error);
+  }
+};
+const handleDeleteFriend = async (friendId) => {
+  try {
+    const response = await fetch(`/deleteFriend/${friendId}`, { method: 'DELETE' });
+    const data = await response.json();
+    console.log(data.message); // Log or handle the success message as needed
+    loadFriendsFromServer(); // Reload friends after deletion
+  } catch (error) {
+    console.error('Error deleting friend', error);
+  }
+};
 const FriendList = (props) => {
   if (props.friends.length === 0) {
     return (
@@ -204,12 +238,13 @@ const FriendList = (props) => {
   const friendNodes = props.friends.map((friend) => (
     <div key={friend._id} className='friend'>
       <h3 className='friendName'>{friend.friend.username}</h3>
+      <button onClick={() => handleSelectFriend(friend.friend._id)}>Select</button>
+      <button onClick={() => handleDeleteFriend(friend.friend._id)}>Delete</button>
     </div>
   ));
 
   return <div className='friendList'>{friendNodes}</div>;
 };
-
 const loadFriendsFromServer = async () => {
   try {
     const response = await fetch('/getFriends');

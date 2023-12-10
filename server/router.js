@@ -20,8 +20,11 @@ const router = (app) => {
   app.post('/addFriend', mid.requiresLogin, controllers.Friend.addFriend);
   app.get('/getFriends', mid.requiresLogin, controllers.Friend.getFriends); // Add this line
 
+  // Add these two lines for selecting and deleting friends
+  app.post('/selectFriend/:friendId', mid.requiresLogin, controllers.Friend.selectFriend);
+  app.delete('/deleteFriend/:friendId', mid.requiresLogin, controllers.Friend.deleteFriend);
 
-
+  app.get('/getTweetsForFriend/:friendId', mid.requiresLogin, controllers.Tweet.getTweetsForFriend);
 
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
