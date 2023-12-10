@@ -194,8 +194,36 @@ nav {
     background-color: #f0f0f0;
     cursor: pointer;
 }
-.scrollable-container {
+
+.scrollable-container2 {
     max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+    border: 1px solid #ddd; /* Optional: Add a border for better visual separation */
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 20px; /* Adjust margin as needed */
+}
+
+/* Customize scrollbar appearance */
+.scrollable-container2::-webkit-scrollbar {
+    width: 12px; /* Adjust the width as needed */
+}
+
+.scrollable-container2::-webkit-scrollbar-thumb {
+    background-color: #a0a0a0; /* Scrollbar thumb color */
+    border-radius: 6px; /* Rounded corners */
+}
+
+.scrollable-container2::-webkit-scrollbar-track {
+    background-color: #f0f0f0; /* Scrollbar track color */
+    border-radius: 8px; /* Rounded corners */
+}
+
+
+
+
+.scrollable-container {
+    max-height: 300px; /* Adjust the height as needed */
     overflow-y: auto;
     border: 1px solid #ddd; /* Optional: Add a border for better visual separation */
     border-radius: 8px;
@@ -217,14 +245,7 @@ nav {
     background-color: #f0f0f0; /* Scrollbar track color */
     border-radius: 8px; /* Rounded corners */
 }
-#sep {
-    max-height: 450px; /* Adjust the height as needed */
-    overflow-y: auto;
-    border: 1px solid #ddd; /* Optional: Add a border for better visual separation */
-    border-radius: 8px;
-    padding: 10px;
-    margin-top: 20px; /* Adjust margin as needed */
-}
+
 #col1 {
     display: flex;
     flex-direction: column;
@@ -288,24 +309,38 @@ nav {
   }
 
   .friendList {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
-  }
-  
-  .friendList h3.emptyFriend {
-    color: #555; /* Adjust the color as needed */
-  }
-  
-  .friendList .friend {
-    border: 1px solid #ddd; /* Border color for each friend box */
+    color: #333;
+}
+
+/* Add or update styles for individual friends */
+.friendList .friend {
+    border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-  }
-  
-  .friendList .friendName {
-    margin: 0;
-  }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.friendList .friendName {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Hover effect for individual friends */
+.friendList .friend:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
 
 
 
@@ -333,7 +368,59 @@ nav {
 #col2 > div:last-child {
     margin-bottom: 0;
 }
+#tweetForm {
+    max-width: 400px;
+    margin: 0 auto;
+    padding-top: 8%;
+    font-size: 1.2em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+   
+}
 
+#tweetForm h3,
+#friendForm h3 {
+    text-align: center;
+    color: #333;
+}
+
+#tweetForm label,
+#friendForm label {
+    display: block;
+    font-size: 1.2em;
+    color: #333;
+}
+
+#resName,
+#tweetmsg,
+#frndName {
+    width: 100%;
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.makeTweetSubmit{
+    display: block;
+   
+    padding: 15px 0;
+    width: 100%;
+    background-color: #33b5d6;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+}
+
+.makeTweetSubmit:hover,
+.addFriendSubmit:hover {
+    background-color: #35caca;
+}
 
 
 
@@ -360,5 +447,27 @@ nav {
 
 
 
+.userList input[type="text"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    width: 200px; /* Adjust the width as needed */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 
+/* Search button styles */
+.userList button {
+    padding: 8px 12px;
+    background-color: #33b5d6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+}
+
+.userList button:hover {
+    background-color: #35caca;
+}
 

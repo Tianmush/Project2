@@ -19,7 +19,9 @@ const addFriend = async (req, res) => {
     if (!friend) {
       return res.status(400).json({ error: 'Friend not found!' });
     }
-
+    if (userId.toString() === friend._id.toString()) {
+      return res.status(400).json({ error: 'You cannot add yourself as a friend!' });
+    }
     const friendData = {
       user: userId,
       friend: friend._id,

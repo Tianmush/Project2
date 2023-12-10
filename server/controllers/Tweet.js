@@ -1,6 +1,7 @@
 const TweetModel = require('../models/Tweet');
 
 const AccountModel = require('../models/Account'); // Adjust the path accordingly
+const FriendModel = require('../models/Friend');
 
 
 const uchatpanelPage = (req, res) => res.render('app');
@@ -15,6 +16,16 @@ const makeTweet = async (req, res) => {
   const receiverUsername = req.body.resName;
 
   try {
+    // Fetch sender's friends
+    const senderFriends = await FriendModel.find({ user: senderId }).populate('friend').exec();
+
+    // Check if the receiver is a friend
+    const isFriend = senderFriends.some(friend => friend.friend.username === receiverUsername);
+
+    if (!isFriend) {
+      return res.status(400).json({ error: 'You can only send messages to friends!' });
+    }
+
     const receiver = await AccountModel.findOne({ username: receiverUsername }).exec();
 
     if (!receiver) {
@@ -36,8 +47,6 @@ const makeTweet = async (req, res) => {
     return res.status(500).json({ error: 'An error occurred while Chatting!' });
   }
 };
-
-
 const getTweets = async (req, res) => {
   try {
     const userId = req.session.account._id;
