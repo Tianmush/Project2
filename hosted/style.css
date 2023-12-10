@@ -310,6 +310,33 @@ nav {
 
 
 
+  #col2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto; /* Let it adjust its height based on content */
+    margin-bottom: 20px;
+}
+
+#col2 h1, #col2 h2 {
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+/* Adjustments for individual sections inside #col4 */
+#col2 > div {
+    margin-bottom: 20px; /* Add some vertical spacing between sections */
+}
+
+/* Optionally, you can add the following style to remove margin from the last child */
+#col2 > div:last-child {
+    margin-bottom: 0;
+}
+
+
+
+
 
 .hidden {
     display: none;
