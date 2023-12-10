@@ -53,10 +53,10 @@ const LoginWindow =(props) =>{
             method='POST'
             className='mainForm'        
         >
-            <label htmlFor='username'>Username:</label>
+            
             <input id='user' type='text' name='username' placeholder='Username' />
             
-            <label htmlFor='pass'>Password:</label>
+            
             <input id='pass' type='password' name='pass' placeholder='Password' />
             
             <input className='formSubmit' type='submit'value='Sign in' />
@@ -74,16 +74,16 @@ const SignupWindow =(props) =>{
             method='POST'
             className='mainForm'        
         >
-            <label htmlFor='username'>Username:</label>
+            
             <input id='user' type='text' name='username' placeholder='Username' />
             
-            <label htmlFor='email'>Email:</label>
+            
             <input id='email' type='email' name='email' placeholder='Email' />
             
-            <label htmlFor='pass'>Password:</label>
+            
             <input id='pass' type='password' name='pass' placeholder='Password' />
             
-            <label htmlFor='pass2'>Password:</label>
+            
             <input id='pass2' type='password' name='pass2' placeholder='Retype Password' />
             
             <input className='formSubmit' type='submit'value='Sign up' />
