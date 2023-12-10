@@ -3,7 +3,6 @@ const React =require('react');
 const ReactDOM =require('react-dom');
 import { useState, useEffect } from 'react';
 
-
 const handleTweet = (e) => {
     e.preventDefault();
     helper.hideError();
@@ -193,6 +192,48 @@ const FriendForm = (props) => {
     </form>
   );
 };
+const FriendList = (props) => {
+  if (props.friends.length === 0) {
+    return (
+      <div className='friendList'>
+        <h3 className='emptyFriend'>No Friends Yet!</h3>
+      </div>
+    );
+  }
+
+  const friendNodes = props.friends.map((friend) => (
+    <div key={friend._id} className='friend'>
+      <h3 className='friendName'>{friend.friend.username}</h3>
+    </div>
+  ));
+
+  return <div className='friendList'>{friendNodes}</div>;
+};
+
+const loadFriendsFromServer = async () => {
+  try {
+    const response = await fetch('/getFriends');
+    const data = await response.json();
+    
+    ReactDOM.render(
+      <FriendList friends={data.friends} />,
+      document.getElementById('friends')
+    );
+  } catch (error) {
+    console.error('Error loading Friends', error);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
 
 
 const loadUsersFromServer = async () => {
@@ -207,24 +248,8 @@ const loadUsersFromServer = async () => {
     console.error('Error loading users', error);
   }
 };
-const loadFriendsFromServer = async () => {
-  try {
-    const response = await fetch('/getFriends');
-    const data = await response.json();
 
-    // Filter friends based on the current user ID
-    const currentUserFriends = data.friends.filter(
-      (friend) => friend.user._id === data.userId
-    );
 
-    ReactDOM.render(
-      <FriendList friends={currentUserFriends} userId={data.userId} />,
-      document.getElementById('friends')
-    );
-  } catch (error) {
-    console.error('Error loading Contacts', error);
-  }
-};
 
 const init = () => {
     ReactDOM.render(
@@ -249,8 +274,14 @@ const init = () => {
       <FriendForm />,
       document.getElementById('makeFriend')
     );
-
-   
+    ReactDOM.render(
+      <FriendList friends={[]} />, // Initialize with an empty array
+      document.getElementById('friends')
+    );
+    ReactDOM.render(
+      <FriendList friends={[]} />,
+      document.getElementById('friends')
+    );
 
   loadTweetsFromServer();
   loadUsersFromServer();

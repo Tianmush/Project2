@@ -2,6 +2,7 @@
 const FriendModel = require('../models/Friend');
 const AccountModel = require('../models/Account');
 
+
 const uchatpanelPage = (req, res) => res.render('app');
 
 const addFriend = async (req, res) => {
@@ -40,9 +41,25 @@ const addFriend = async (req, res) => {
   }
 };
 
+const getFriends = async (req, res) => {
+  const userId = req.session.account._id;
+
+  try {
+    // Find friends of the current user
+    const friends = await FriendModel.find({ user: userId })
+      .populate('friend', 'username') // Populate the 'friend' field with the 'username'
+      .exec();
+
+    res.json({ friends, userId });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'An error occurred while getting friends!' });
+  }
+};
 
 module.exports = {
   uchatpanelPage,
   addFriend,
+  getFriends,
 
 };
