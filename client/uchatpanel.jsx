@@ -20,7 +20,13 @@ const handleTweet = (e) => {
     return false;
   };
   
-  
+  const SelectedFriendHeader = ({ username }) => {
+    return (
+      <div className="selectedFriendHeader">
+        <h3>Selected Friend: {username}</h3>
+      </div>
+    );
+  };
 
   const TweetForm = (props) => {
     return (
@@ -47,12 +53,12 @@ const handleTweet = (e) => {
 
 
   const TweetList = (props) => {
-    const { tweets, userId, selectedFriendId } = props;
+    const { tweets, userId, selectedFriendId, selectedFriendUsername } = props;
   
     if (tweets.length === 0) {
       return (
         <div className='tweetList'>
-          <h3 className='emptyTweet'>No Tweets Yet!</h3>
+          <h3 className='emptyTweet'>No Chats Yet!</h3>
         </div>
       );
     }
@@ -72,28 +78,44 @@ const handleTweet = (e) => {
   
       return (
         <div key={tweet._id} className='tweet'>
-          <img src='/assets/img/Twitter.png' alt='Twitter' className='tweetFace' />
+          
           <h3 className='tweetName'>From: {senderName} | To: {receiverName}</h3>
           <p className='tweetmsg'>Message: {tweet.message}</p>
         </div>
       );
     });
   
-    return <div className='tweetList'>{tweetNodes}</div>;
+    return (
+      <div className='tweetList'>
+        
+        {tweetNodes}
+      </div>
+    );
   };
   
 
-  const loadTweetsFromServer = async()=>{
+  const loadTweetsFromServer = async () => {
     try {
       const response = await fetch('/getTweets');
       const data = await response.json();
+  
+      // Retrieve the selected friend ID and username from localStorage
+      const selectedFriendId = localStorage.getItem('selectedFriendId');
+      const selectedFriendUsername = localStorage.getItem('selectedFriendUsername');
+  
+      // Render the tweets, passing the selected friend ID and username if available
       ReactDOM.render(
-        <TweetList tweets={data.tweets} userId={data.userId} />,
+        <TweetList
+          tweets={data.tweets}
+          userId={data.userId}
+          selectedFriendId={selectedFriendId}
+          selectedFriendUsername={selectedFriendUsername}
+        />,
         document.getElementById('tweets')
       );
     } catch (error) {
       console.error('Error loading tweets', error);
-    }    
+    }
   };
 
 
@@ -207,9 +229,18 @@ const handleSelectFriend = async (friendId) => {
     const response = await fetch(`/getTweetsForFriend/${friendId}`);
     const data = await response.json();
 
+    // Store the selected friend ID and username in localStorage
+    localStorage.setItem('selectedFriendId', friendId);
+    localStorage.setItem('selectedFriendUsername', data.selectedFriendUsername);
+
     // Render the tweets for the selected friend
     ReactDOM.render(
-      <TweetList tweets={data.tweets} userId={data.userId} selectedFriendId={friendId} />,
+      <TweetList
+        tweets={data.tweets}
+        userId={data.userId}
+        selectedFriendId={friendId}
+        selectedFriendUsername={data.selectedFriendUsername}
+      />,
       document.getElementById('tweets')
     );
   } catch (error) {

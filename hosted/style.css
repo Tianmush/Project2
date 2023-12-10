@@ -470,4 +470,16 @@ nav {
 .userList button:hover {
     background-color: #35caca;
 }
+.friendList button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+}
 
+.friendList button:hover {
+    background-color: #2980b9;
+}
