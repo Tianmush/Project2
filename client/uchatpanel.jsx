@@ -94,7 +94,6 @@ const handleTweet = (e) => {
 
 
 
-//User Module
 const UserProfile = () => {
   const [userData, setUserData] = useState({ username: '', email: '' });
 
@@ -126,7 +125,7 @@ const UserProfile = () => {
   );
 };
 
-//User Module
+
 const UserList = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -161,12 +160,6 @@ const UserList = (props) => {
   );
 };
 
-
-
-
-
-
-//User Friend
 const handleAddFriend = (e) => {
   e.preventDefault();
   helper.hideError();
@@ -202,9 +195,41 @@ const FriendForm = (props) => {
 };
 
 
+const FriendList = (props) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`/getFriends?search=${searchTerm}`);
+      const data = await response.json();
+      ReactDOM.render(<FriendList users={data.users} />, document.getElementById('users'));
+    } catch (error) {
+      console.error('Error searching friends', error);
+    }
+  };
 
 
+  return (
+    <div className='friendList'>
+      <input
+        type='text'
+        placeholder='Search friends'
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <button onClick={handleSearch}>Search</button>
 
+      {props.users.map((user) => (
+        <div key={user._id} className='user'>
+          <h3 className='userName'>{friend.friend}</h3>
+         
+        </div>
+      ))}
+    </div>
+  );
+};
+
+  
 
 const loadUsersFromServer = async () => {
   try {
@@ -218,10 +243,24 @@ const loadUsersFromServer = async () => {
     console.error('Error loading users', error);
   }
 };
+const loadFriendsFromServer = async () => {
+  try {
+    const response = await fetch('/getFriends');
+    const data = await response.json();
 
+    // Filter friends based on the current user ID
+    const currentUserFriends = data.friends.filter(
+      (friend) => friend.user._id === data.userId
+    );
 
-
-
+    ReactDOM.render(
+      <FriendList friends={currentUserFriends} userId={data.userId} />,
+      document.getElementById('friends')
+    );
+  } catch (error) {
+    console.error('Error loading Contacts', error);
+  }
+};
 
 const init = () => {
     ReactDOM.render(
@@ -247,7 +286,11 @@ const init = () => {
       document.getElementById('makeFriend')
     );
 
-    
+    ReactDOM.render(
+      <FriendList friends={[]} />,
+      document.getElementById('friends')
+    );
+
   loadTweetsFromServer();
   loadUsersFromServer();
   loadFriendsFromServer();

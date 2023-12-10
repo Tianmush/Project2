@@ -31,3 +31,4 @@ FriendSchema.statics.toAPI = (doc) => ({
 
 const FriendModel = mongoose.model('Friend', FriendSchema);
 module.exports = FriendModel;
+

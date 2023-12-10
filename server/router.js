@@ -18,7 +18,9 @@ const router = (app) => {
   app.get('/getAllUsers', mid.requiresLogin, controllers.Tweet.getAllUsers);
  
   app.post('/addFriend', mid.requiresLogin, controllers.Friend.addFriend);
-  
+  app.get('/getFriends', mid.requiresLogin, controllers.Friend.getFriends);
+
+
 
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
