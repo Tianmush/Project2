@@ -195,42 +195,6 @@ const FriendForm = (props) => {
 };
 
 
-const FriendList = (props) => {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(`/getFriends?search=${searchTerm}`);
-      const data = await response.json();
-      ReactDOM.render(<FriendList users={data.users} />, document.getElementById('users'));
-    } catch (error) {
-      console.error('Error searching friends', error);
-    }
-  };
-
-
-  return (
-    <div className='friendList'>
-      <input
-        type='text'
-        placeholder='Search friends'
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
-
-      {props.users.map((user) => (
-        <div key={user._id} className='user'>
-          <h3 className='userName'>{friend.friend}</h3>
-         
-        </div>
-      ))}
-    </div>
-  );
-};
-
-  
-
 const loadUsersFromServer = async () => {
   try {
     const response = await fetch('/getAllUsers');
@@ -286,10 +250,7 @@ const init = () => {
       document.getElementById('makeFriend')
     );
 
-    ReactDOM.render(
-      <FriendList friends={[]} />,
-      document.getElementById('friends')
-    );
+   
 
   loadTweetsFromServer();
   loadUsersFromServer();

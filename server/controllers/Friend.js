@@ -40,30 +40,9 @@ const addFriend = async (req, res) => {
   }
 };
 
-const getFriends = async (req, res) => {
-    try {
-      const userId = req.session.account._id;
-  
-      const query = {
-        user: userId,
-      };
-  
-      const docs = await FriendModel.find(query)
-        .populate('friend', 'username')
-        .lean()
-        .exec();
-  
-      console.log('Fetched friends:', docs); // Add this log
-  
-      return res.json({ friends: docs, userId });
-    } catch (err) {
-      console.log(err);
-      return res.status(500).json({ error: 'Error retrieving friends!' });
-    }
-  };
 
 module.exports = {
   uchatpanelPage,
   addFriend,
-  getFriends,
+
 };
