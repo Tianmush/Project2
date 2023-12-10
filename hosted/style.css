@@ -351,14 +351,6 @@ nav {
     overflow: hidden;
 }
 
-#tweetMessage h3 {
-    width: 200px;
-    position: absolute;
-    top: 0px;
-    
-}
-
-
 #errorMessage {
     font-size: 1.2em;
     font-weight: bold;

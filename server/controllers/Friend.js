@@ -33,7 +33,7 @@ const addFriend = async (req, res) => {
     const newFriendship = new FriendModel(friendData);
     await newFriendship.save();
 
-    return res.status(201).json({ message: 'Friend added successfully' });
+    return res.status(201).json({ error: 'Friend added successfully' });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: 'An error occurred while adding friend!' });
