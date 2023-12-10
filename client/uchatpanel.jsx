@@ -139,10 +139,6 @@ const UserList = (props) => {
     }
   };
 
-  const handleRadioSelect = (username) => {
-    // Implement the logic to pass the selected username to the makeTweet function
-    console.log(`Selected user: ${username}`);
-  };
 
   return (
     <div className='userList'>
@@ -157,11 +153,7 @@ const UserList = (props) => {
       {props.users.map((user) => (
         <div key={user._id} className='user'>
           <h3 className='userName'>{user.username}</h3>
-          <input
-            type='radio'
-            name='selectedUser'
-            onChange={() => handleRadioSelect(user.username)}
-          />
+         
         </div>
       ))}
     </div>
